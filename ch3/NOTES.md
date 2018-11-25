@@ -60,10 +60,44 @@ $ echo .[!.]* *
 Well, there's a problem: it won't match filenames like `..foo`.
 Unfortunately, the shell's pattern matching facilities don't provide a way
 to match this but not that. You have to use external tools.
-This will do exactly what we need:
+
+Of course, some `ls` implementations already provide an option for this.
+E.g. GNU `ls` has the `-A` option.
+
+The portable way to do this is:
 ```
 $ ls -a | grep -Fxv -e . -e .. | xargs echo
 ```
 
-And, of course, some `ls` implementations already provide an option for this.
-E.g. GNU `ls` has the `-A` option.
+But be careful: there may be malicious files with names containing line breaks.
+See [here][backticks-danger] for more info.
+
+For example, one might create the following:
+```
+/tmp/moo<NEWLINE>/etc/passwd
+```
+
+If then you did something like this:
+```
+$ find /tmp -type f -print | xargs rm -f
+```
+
+`find` would give you the following output:
+```
+...
+/tmp/moo
+/etc/passwd
+...
+```
+
+`rm -f` would actually remove `/etc/passwd`.
+And that's not the worst scenario. Again, be careful.
+
+You won't have this problem when using `-exec` or `-delete`:
+```
+$ find /tmp -type f -exec rm -f {} +
+$ find /tmp -type f -delete
+```
+
+
+[backticks-danger]: http://porkmail.org/era/unix/award.html#arg-max
