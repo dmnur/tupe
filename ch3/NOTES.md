@@ -132,4 +132,19 @@ $
 ```
 
 
+# PATH containing the current directory
+
+One interesting thing about early Unixes is that `$PATH` there contains
+the current directory, e.g. `PATH=.:/bin:/usr/bin`.
+
+Nowadays the only place you'll see it is Windows' `cmd.exe` (PowerShell fixed
+this and many other things).
+
+Why? Because that's dangerous. Say you've downloaded some tarball with
+cat pictures or whatever. You extract it, change to the extracted directory,
+then type `ls` to see what's in there. But the archive had the executable file
+named `ls`, which is a script that runs `rm -rf ~/*`. With `$PATH` containing
+the current directory, you'd call this script instead of `/bin/ls`.
+
+
 [backticks-danger]: http://porkmail.org/era/unix/award.html#arg-max
