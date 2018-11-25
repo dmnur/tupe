@@ -22,6 +22,20 @@ $ (sleep 300; notify-send "Tea is ready") &
 `notify-send` is part of `libnotify`.
 
 
+# Terminal's bell
+
+We don't have hardware terminals these days, and our terminal emulators
+don't have a bell to ring.
+
+Some terminal emulators play a sound when echoing `\a`, but most just
+ignore it.
+
+You can test your terminal's reaction by typing this command:
+```
+$ printf \\a
+```
+
+
 # Stuff I haven't noticed before
 
 Turns out that `tee` was there starting from at least Research Unix v7.
