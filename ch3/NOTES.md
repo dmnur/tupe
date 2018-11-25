@@ -100,4 +100,36 @@ $ find /tmp -type f -delete
 ```
 
 
+# echo is dangerous
+
+Don't rely on `echo` to print a value of a variable.
+
+Let's see this example (using `bash`):
+```
+$ xyzzy=-n
+$ echo $xyzzy
+$
+```
+
+`echo` interprets `-n` as its option. And no, quoting won't help:
+```
+$ echo "$xyzzy"
+$
+```
+
+This is not an issue when you prepend it with some other text:
+```
+$ echo "xyzzy=$xyzzy"
+xyzzy=-n
+$
+```
+
+Anyway, my advice is to always use `printf` when printing values of variables:
+```
+$ printf '%s\n' "$xyzzy"
+-n
+$
+```
+
+
 [backticks-danger]: http://porkmail.org/era/unix/award.html#arg-max
