@@ -36,6 +36,19 @@ $ printf \\a
 ```
 
 
+# Shell: I/O redirection
+
+```
+$ echo Hello >junk
+$ >junk echo Hello
+```
+
+Few folks know that you don't have to put the redirection operator at the end
+of the command.
+
+Use this knowledge at your job interview. ;)
+
+
 # Stuff I haven't noticed before
 
 Turns out that `tee` was there starting from at least Research Unix v7.
