@@ -147,4 +147,14 @@ named `ls`, which is a script that runs `rm -rf ~/*`. With `$PATH` containing
 the current directory, you'd call this script instead of `/bin/ls`.
 
 
+# Don't use backticks
+
+Backticks are inconvenient to read and painful to nest. Modern shells
+provide `$()` as a much more useful alternative. Compare these two commands:
+```
+$ mail `pick \`mailinglist\``
+$ mail $(pick $(mailinglist))
+```
+
+
 [backticks-danger]: http://porkmail.org/era/unix/award.html#arg-max
