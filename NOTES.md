@@ -30,3 +30,12 @@ it is used immediately, so you can e.g. do this:
 ```
 $ PATH=/usr/games fortune
 ```
+
+The word in &ldquo;here document&rdquo; constructions can be escaped not only
+by quoting it, but also with a backslash:
+```
+$ cat <<\EOF
+> `foo bar`
+> EOF
+`foo bar`
+```
