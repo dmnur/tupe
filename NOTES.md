@@ -22,3 +22,7 @@ $ . x
 x
 # note that I didn't even run `chmod +x`
 ```
+
+The syntax `foo=bar cmd` was available in v7's `sh`. Also, originally these
+assignments could be anywhere in the command line, &ldquo;but this interfered
+with `dd(1)`.&rdquo;
