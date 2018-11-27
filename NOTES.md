@@ -11,6 +11,8 @@ Every Appendix 1 exercise can be done with it, editor commands are the same.
 
 Turns out that `tee` was there starting from at least Research Unix v7.
 
+<hr/>
+
 What?! The `.` command uses `$PATH`!
 ```
 $ pwd
@@ -23,6 +25,8 @@ x
 # note that I didn't even run `chmod +x`
 ```
 
+<hr/>
+
 The syntax `foo=bar cmd` was available in v7's `sh`. Also, originally these
 assignments could be anywhere in the command line, &ldquo;but this interfered
 with `dd(1)`.&rdquo; Another funny thing is that when you set `$PATH` this way
@@ -30,6 +34,8 @@ it is used immediately, so you can e.g. do this:
 ```
 $ PATH=/usr/games fortune
 ```
+
+<hr/>
 
 The word in &ldquo;here document&rdquo; constructions can be escaped not only
 by quoting it, but also with a backslash:
