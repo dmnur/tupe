@@ -1,0 +1,27 @@
+#!/bin/sh
+# 2, 3, ...:  print in n columns
+# (from section 3.4)
+
+# Nowadays $0 always contains at least one slash, so basename(1) is required.
+# Also, the path to the script may contain spaces, so we quote $0 here
+# and $cols below.
+cols=$(basename "$0")
+
+#   By default pr(1) sets output width to 72 characters. It doesn't check
+# the terminal's window width, which isn't good for the most common use case
+# of this script. So here we check if we output to a terminal, and in that
+# case use the width value the terminal reports, asking it via tput(1)
+# if the command is available. tput(1) will output `-1` if the terminal
+# doesn't have the `cols` capability; we then fall back to 72 characters.
+#   A user can always specify the desired width using the `-w` option,
+# which will be passed to pr(1), overriding our value.
+if [ -t 1 ] && command -v tput >/dev/null
+then
+	w=$(tput cols)
+	[ "$w" = -1 ] && unset w
+fi
+
+# The `${w:+-w $w}` does the following: if $w is null or unset,
+# print nothing; otherwise print `-w $w`. So we only provide width if we
+# were able to determine it above.
+pr -"$cols" ${w:+-w $w} -t -l1 "$@"
