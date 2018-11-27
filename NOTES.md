@@ -25,4 +25,8 @@ x
 
 The syntax `foo=bar cmd` was available in v7's `sh`. Also, originally these
 assignments could be anywhere in the command line, &ldquo;but this interfered
-with `dd(1)`.&rdquo;
+with `dd(1)`.&rdquo; Another funny thing is that when you set `$PATH` this way
+it is used immediately, so you can e.g. do this:
+```
+$ PATH=/usr/games fortune
+```
