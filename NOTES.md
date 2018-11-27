@@ -9,9 +9,11 @@ Every Appendix 1 exercise can be done with it, editor commands are the same.
 
 # Stuff I haven't noticed before
 
+## &ldquo;tee&rdquo; is not new
+
 Turns out that `tee` was there starting from at least Research Unix v7.
 
-<hr/>
+## &ldquo;.&rdquo; uses PATH
 
 What?! The `.` command uses `$PATH`!
 ```
@@ -25,7 +27,7 @@ x
 # note that I didn't even run `chmod +x`
 ```
 
-<hr/>
+## &ldquo;foo=bar cmd&rdquo; is not new
 
 The syntax `foo=bar cmd` was available in v7's `sh`. Also, originally these
 assignments could be anywhere in the command line, &ldquo;but this interfered
@@ -35,7 +37,7 @@ it is used immediately, so you can e.g. do this:
 $ PATH=/usr/games fortune
 ```
 
-<hr/>
+## Backslash in here-documents
 
 The word in &ldquo;here document&rdquo; constructions can be escaped not only
 by quoting it, but also with a backslash:
