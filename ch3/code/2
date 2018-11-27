@@ -11,14 +11,21 @@ cols=$(basename "$0")
 # the terminal's window width, which isn't good for the most common use case
 # of this script. So here we check if we output to a terminal, and in that
 # case use the width value the terminal reports, asking it via tput(1)
-# if the command is available. tput(1) will output `-1` if the terminal
-# doesn't have the `cols` capability; we then fall back to 72 characters.
+# if the command is available.
+#   If the terminal is not supported (doesn't have a terminfo(5) entry),
+# tput(1) will print an error and exit with non-zero code. We don't want to
+# bother a user with that, so we silence tput(1) and check its exit code.
+# If the code is 0 (success), we continue to check the command output.
+# tput(1) will output `-1` if the terminal doesn't have the `cols` capability.
+# If any check fails, we fall back to 72 characters.
 #   A user can always specify the desired width using the `-w` option,
 # which will be passed to pr(1), overriding our value.
 if [ -t 1 ] && command -v tput >/dev/null
 then
-	w=$(tput cols)
-	[ "$w" = -1 ] && unset w
+	if ! w=$(tput cols 2>/dev/null) || [ "$w" = -1 ]
+	then
+		unset w
+	fi
 fi
 
 # The `${w:+-w $w}` does the following: if $w is null or unset,
