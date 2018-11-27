@@ -10,3 +10,15 @@ Every Appendix 1 exercise can be done with it, editor commands are the same.
 # Stuff I haven't noticed before
 
 Turns out that `tee` was there starting from at least Research Unix v7.
+
+What?! The `.` command uses `$PATH`!
+```
+$ pwd
+/home/dmn
+$ echo $PATH
+/home/dmn/bin:/bin:/usr/bin
+$ echo 'echo x' > bin/x
+$ . x
+x
+# note that I didn't even run `chmod +x`
+```
