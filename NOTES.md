@@ -11,7 +11,7 @@ Every Appendix 1 exercise can be done with it, editor commands are the same.
 
 ## `tee` is not new
 
-Turns out that `tee` was there starting from at least Research Unix v7.
+Turns out that `tee` was there since at least Research Unix v7.
 
 ## `.` uses PATH
 
