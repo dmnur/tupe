@@ -47,3 +47,11 @@ $ cat <<\EOF
 > EOF
 `foo bar`
 ```
+
+## Empty parameter list in `for` loop
+
+It works as expected! I thought there would be a syntax error.
+```
+$ for i in ; do echo $i; done
+$
+```
