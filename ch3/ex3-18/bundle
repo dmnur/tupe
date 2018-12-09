@@ -1,0 +1,16 @@
+#!/bin/sh
+# bundle:  group files into distribution package
+# (from section 3.9)
+# Modified for exercise 3-18: include with each file the information
+# garnered from `ls -l`.
+
+echo '# To unbundle, sh this file'
+for i
+do
+	echo "cat >&2 <<'EOF'"
+	ls -l $i
+	echo EOF
+	echo "cat >$i <<'End of $i'"
+	cat $i
+	echo "End of $i"
+done
